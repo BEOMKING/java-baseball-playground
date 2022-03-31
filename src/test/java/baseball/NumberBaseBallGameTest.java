@@ -3,10 +3,7 @@ package baseball;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.ValueSource;
 
 public class NumberBaseBallGameTest {
 
@@ -17,5 +14,14 @@ public class NumberBaseBallGameTest {
 		assertThat(game.checkLengthThree(123)).isTrue();
 		assertThatExceptionOfType(RuntimeException.class)
 			.isThrownBy(() -> game.checkLengthThree(1000));
+	}
+	
+	@Test
+	public void 입력값에_1이포함되어_있는지() {
+		assertThatExceptionOfType(RuntimeException.class)
+			.isThrownBy(() -> game.checkNumberRange(100));
+		assertThat(game.checkNumberRange(948)).isTrue();
+		assertThatExceptionOfType(RuntimeException.class)
+			.isThrownBy(() -> game.checkNumberRange(902));
 	}
 }

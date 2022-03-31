@@ -14,6 +14,15 @@ public class NumberBaseBallGame {
 		return random.nextInt(1, number);
 	}
 
+	public boolean checkNumberRange(int input) {
+		for(int i = 0; i < 3; i++) {
+			if (input % 10 == 0) {
+				throw new RuntimeException("0이 포함되어있습니다.");
+			}
+			input /= 10;
+		}
+		return true;
+	}
 	
 	public boolean checkLengthThree(int input) {
 		if (input < 101 || input > 999) {
