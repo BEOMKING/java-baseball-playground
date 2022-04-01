@@ -28,6 +28,13 @@ public class NumberBaseBallGameTest {
 	}
 	
 	@Test
+	public void 입력값이_서로다른숫자로_이루어져있는지() {
+		assertThat(game.checkDuplicate(123)).isTrue();
+		assertThatExceptionOfType(RuntimeException.class)
+			.isThrownBy(() -> game.checkDuplicate(122));
+	}
+	
+	@Test
 	public void 입력값과_정답이_같은지() {
 		game.userInput = 283;
 		game.answer = 293;
