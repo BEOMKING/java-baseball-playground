@@ -20,7 +20,8 @@ public class NumberBaseBallGame {
 			checkLengthThree(userInput);
 			checkHasZero(userInput);
 			
-			Result result = checkAnswer();
+			
+			Result result = checkAnswer(checkDuplicate(userInput));
 			if (result.result) {
 				correctAnswer(3);
 			}
@@ -73,7 +74,7 @@ public class NumberBaseBallGame {
 		return true;
 	}
 	
-	public boolean checkDuplicate(int input) {
+	public boolean[] checkDuplicate(int input) {
 		boolean[] checked = new boolean[10];
 		for(int i = 0; i < 3; i++) {
 			if (checked[input % 10]) {
@@ -82,26 +83,27 @@ public class NumberBaseBallGame {
 			checked[input % 10] = true;
 			input /= 10;
 		}
-		return true;
+		return checked;
 	}
 	
-	public Result checkAnswer() {
+	public Result checkAnswer(boolean[] checked) {
 		int copyAnswer = answer;
 		int copyUserInput = userInput;
 		if (userInput == answer) {
 			return new Result(0, 3, true);
 		}
-		return countBallStrike(copyUserInput, copyAnswer);
+		return countBallStrike(copyUserInput, copyAnswer, checked);
 	}
 	
-	public Result countBallStrike(int userInput, int answer) {
+	public Result countBallStrike(int userInput, int answer, boolean[] checked) {
 		int ball = 0;
 		int strike = 0;
 		for(int i = 0; i < 3; i++) {
 			if (userInput % 10 == answer % 10) {
 				strike++;
 			}
-			if (userInput % 10 != answer % 10) {
+
+			if (userInput % 10 != answer % 10 && checked[userInput % 10]) {
 				ball++;
 			}
 			userInput /= 10;
