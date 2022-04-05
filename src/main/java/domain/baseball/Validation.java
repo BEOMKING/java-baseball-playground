@@ -12,4 +12,13 @@ public class Validation {
 		return numbers.size() == 3;
 	}
 
+	public static boolean validDuplicate(List<Integer> numbers) {
+		for (int i = 0; i < numbers.size(); i++) {
+			for (int j = i + 1; j < numbers.size(); j++) {
+				if (numbers.get(i) == numbers.get(j)) return false;
+			}
+		}
+		return true;
+	}
+
 }

@@ -3,7 +3,6 @@ package domain.baseball;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.Arrays;
-import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
@@ -22,6 +21,12 @@ class ValidationTest {
 		assertThat(Validation.validLen(Arrays.asList(1, 2))).isFalse();
 	}
 	
-	
+	@Test
+	void 숫자가_서로_중복되지_않는지() {
+		assertThat(Validation.validDuplicate(Arrays.asList(1, 2, 3))).isTrue();
+		assertThat(Validation.validDuplicate(Arrays.asList(1, 2, 2))).isFalse();
+		assertThat(Validation.validDuplicate(Arrays.asList(4, 2, 4))).isFalse();		
+		assertThat(Validation.validDuplicate(Arrays.asList(9, 1, 6))).isTrue();		
+	}
 
 }
