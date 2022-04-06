@@ -24,5 +24,17 @@ class BallsTest {
 		BallStatus status = answer.match(1, 3);
 		assertThat(status).isEqualTo(BallStatus.OUT);
 	}
+	
+	@Test
+	void 볼() {
+		BallStatus status = answer.match(0, 4);
+		assertThat(status).isEqualTo(BallStatus.BALL);
+	}
+	
+	@Test
+	void 스트라이크() {
+		BallStatus status = answer.match(1, 4);
+		assertThat(status).isEqualTo(BallStatus.STRIKE);
+	}
 
 }
