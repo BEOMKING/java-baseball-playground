@@ -14,11 +14,20 @@ public class Validation {
 
 	public static boolean validDuplicate(List<Integer> numbers) {
 		for (int i = 0; i < numbers.size(); i++) {
-			for (int j = i + 1; j < numbers.size(); j++) {
-				if (numbers.get(i) == numbers.get(j)) return false;
+			if (validHasDuplicate(i, numbers.get(i), numbers)) {
+				return false;
 			}
 		}
 		return true;
+	}
+
+	public static boolean validHasDuplicate(int index, int number, List<Integer> numbers) {
+		for (int i = index + 1; i < numbers.size(); i++) {
+			if (number == numbers.get(i)) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 }

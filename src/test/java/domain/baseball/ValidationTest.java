@@ -3,6 +3,7 @@ package domain.baseball;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.Arrays;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
@@ -27,6 +28,15 @@ class ValidationTest {
 		assertThat(Validation.validDuplicate(Arrays.asList(1, 2, 2))).isFalse();
 		assertThat(Validation.validDuplicate(Arrays.asList(4, 2, 4))).isFalse();		
 		assertThat(Validation.validDuplicate(Arrays.asList(9, 1, 6))).isTrue();		
+	}
+	
+	@Test
+	void 현재_인덱스_숫자와_같은_값을_가지고_있는_수가_있는지() {
+		List<Integer> numbers = Arrays.asList(1, 2, 3);
+		boolean result = Validation.validHasDuplicate(0, 3, numbers);
+		boolean result2 = Validation.validHasDuplicate(0, 4, numbers);
+		assertThat(result).isTrue();
+		assertThat(result2).isFalse();
 	}
 
 }
