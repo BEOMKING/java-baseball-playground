@@ -1,13 +1,17 @@
 package domain.baseball;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Balls {
 
-	List<Integer> answer;
+	List<Ball> answer;
 	
-	public Balls(List<Integer> answer) {
-		this.answer = answer;
+	public Balls(List<Integer> answerList) {
+		answer = new ArrayList<>();
+		for (int index = 0; index < answerList.size(); index++) {
+			answer.add(new Ball(index, answerList.get(index)));
+		}
 	}
 
 	public BallStatus match(int index, int number) {
@@ -21,12 +25,25 @@ public class Balls {
 	}
 
 	private boolean matchIndexAndNumber(int index, int number) {
-		return answer.get(index) == number;
+		return answer.get(index).no == number;
 	}
 
 	private boolean matchNumber(int number) {
-		return this.answer.contains(number);
+		for (int i = 0; i < answer.size(); i++) {
+			if (matchIndexAndNumber(i, number)) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	public Result makeResult(List<Integer> user) {
+		Result result = new Result();
+		for (int i = 0; i < user.size(); i++) {
+			result.addCountByStatus(match(i, user.get(i)));
+		}
+		return result;
 	}
 	
-	
+
 }

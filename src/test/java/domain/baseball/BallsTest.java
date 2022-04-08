@@ -1,9 +1,7 @@
 package domain.baseball;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -36,5 +34,20 @@ class BallsTest {
 		BallStatus status = answer.match(1, 4);
 		assertThat(status).isEqualTo(BallStatus.STRIKE);
 	}
+	
+	@Test
+	void 입력된_리스트_Balls로_변환() {
+		List<Ball> balls = answer.answer;
+		assertThat(balls.get(0).index).isEqualTo(0);
+		assertThat(balls.get(0).no).isEqualTo(2);
+		assertThat(balls.get(2).index).isEqualTo(2);
+		assertThat(balls.get(2).no).isEqualTo(5);
+	}
 
+	@Test
+	void 결과값_출력() {
+		Result result = answer.makeResult(Arrays.asList(2, 5, 8));
+		assertThat(result.strikeCount).isEqualTo(1);
+		assertThat(result.ballCount).isEqualTo(1);
+	}
 }
