@@ -8,13 +8,13 @@ public class Validation {
 		return number > 0 && number < 10;
 	}
 
-	public static boolean validLen(List<Object> numbers) {
+	public static boolean validLen(List<Integer> numbers) {
 		return numbers.size() == 3;
 	}
 
 	public static boolean validDuplicate(List<Integer> numbers) {
 		for (int i = 0; i < numbers.size(); i++) {
-			if (validHasDuplicate(i, numbers.get(i), numbers)) {
+			if (validHasDuplicate(i, numbers.get(i), numbers) || !validNo(numbers.get(i))) {
 				return false;
 			}
 		}
