@@ -6,10 +6,10 @@ public class Result {
 	public int ballCount;
 	
 	public void addCountByStatus(BallStatus ballStatus) {
-		if (BallStatus.isStrike(ballStatus)) {
+		if (ballStatus.isStrike()) {
 			strikeCount++;
 		}
-		if (BallStatus.isBall(ballStatus)) {
+		if (ballStatus.isBall()) {
 			ballCount++;
 		}
 	}
